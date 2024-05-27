@@ -41,6 +41,7 @@ func InitRouters(h *handler.Handler) *gin.Engine {
 	auth := router.Group("/pc")
 	{
 		auth.POST("/edit", h.AddNewPc)
+		auth.DELETE("/edit", h.PcDel)
 		auth.PUT("/edit", h.EditPc)
 		auth.POST("/class", h.CreateClass)
 		auth.DELETE("/class", h.ClassDel)
