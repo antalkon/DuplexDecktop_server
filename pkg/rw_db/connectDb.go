@@ -19,7 +19,6 @@ func ConnectDb() (*sql.DB, error) {
 		return nil, fmt.Errorf("failed to open database connection: %w", err)
 	}
 
-	// Проверяем соединение
 	err = db.Ping()
 	if err != nil {
 		db.Close() // Закрываем соединение в случае ошибки

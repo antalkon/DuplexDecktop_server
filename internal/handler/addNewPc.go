@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/google/uuid"
+	"github.com/antalkon/DuplexDecktop_srver/pkg/g_uuid"
 	"net/http"
 
 	"github.com/antalkon/DuplexDecktop_srver/pkg/rw_db"
@@ -16,25 +16,18 @@ func (h *Handler) AddNewPc(c *gin.Context) {
 	}
 	defer db.Close()
 
-	// Декодируем JSON данные из запроса
 	var pc rw_db.PC
 	if err := c.ShouldBindJSON(&pc); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	pcId := generateUUID()
-	// Добавляем новый ПК в базу данных
+
+	pcId := g_uuid.generateUUID()
+
 	if err := rw_db.WriteNewPc(db, pc, pcId); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	// Возвращаем успешный ответ
 	c.JSON(http.StatusOK, gin.H{"message": "New PC added"})
-}
-
-// ПЕРЕНОС
-func generateUUID() string {
-	uuidObj := uuid.New()
-	return uuidObj.String()[:6] // Берем первые 6 символов UUID
 }

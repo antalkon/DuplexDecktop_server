@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"github.com/antalkon/DuplexDecktop_srver/pkg/g_uuid"
 	"github.com/antalkon/DuplexDecktop_srver/pkg/rw_db"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -20,7 +21,7 @@ func (handler *Handler) CreateClass(c *gin.Context) {
 		return
 	}
 
-	id := generateUUID()
+	id := g_uuid.generateUUID()
 
 	if err := rw_db.NewClass(db, class, id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
