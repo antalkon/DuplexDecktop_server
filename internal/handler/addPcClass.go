@@ -8,6 +8,7 @@ import (
 
 func (h *Handler) AddPcClass(c *gin.Context) {
 	id := c.Param("id")
+
 	db, err := rw_db.ConnectDb()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})

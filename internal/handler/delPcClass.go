@@ -15,13 +15,8 @@ func (h *Handler) DelPcClass(c *gin.Context) {
 	}
 	defer db.Close()
 	//
-	var class rw_db.AddPcClass
-	if err := c.ShouldBindJSON(&class); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
 
-	if err := rw_db.AddPCClass(db, class, id); err != nil {
+	if err := rw_db.DelPCClass(db, id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
