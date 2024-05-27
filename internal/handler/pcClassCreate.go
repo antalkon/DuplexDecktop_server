@@ -21,7 +21,7 @@ func (handler *Handler) CreateClass(c *gin.Context) {
 		return
 	}
 
-	id := g_uuid.generateUUID()
+	id := g_uuid.GenerateUUID()
 
 	if err := rw_db.NewClass(db, class, id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})

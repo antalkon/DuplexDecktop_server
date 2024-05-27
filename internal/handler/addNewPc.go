@@ -22,7 +22,7 @@ func (h *Handler) AddNewPc(c *gin.Context) {
 		return
 	}
 
-	pcId := g_uuid.generateUUID()
+	pcId := g_uuid.GenerateUUID()
 
 	if err := rw_db.WriteNewPc(db, pc, pcId); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
