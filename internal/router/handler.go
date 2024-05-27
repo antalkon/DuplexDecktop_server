@@ -42,6 +42,7 @@ func InitRouters(h *handler.Handler) *gin.Engine {
 	{
 		auth.POST("/edit", h.AddNewPc)
 		auth.PUT("/edit", h.EditPc)
+		auth.POST("/class", h.CreateClass)
 		//auth.POST("/sign-in")
 	}
 
