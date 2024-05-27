@@ -40,21 +40,23 @@ func InitRouters(h *handler.Handler) *gin.Engine {
 
 	auth := router.Group("/pc")
 	{
-		auth.POST("/add", h.AddNewPc)
+		auth.POST("/edit", h.AddNewPc)
+		auth.PUT("/edit", h.EditPc)
 		//auth.POST("/sign-in")
 	}
 
-	//api := router.Group("/api")
-	//{
-	//	lists := api.Group("/lists")
-	//	{
-	//		lists.POST("/")
-	//		lists.GET("/")
-	//		lists.GET("/:id")
-	//		lists.PUT("/:id")
-	//		lists.DELETE("/:id")
-	//
-	//	}
-	//}
+	api := router.Group("/api")
+	{
+		lists := api.Group("/lists")
+		{
+			lists.POST("/", h.ListPc)
+			//		lists.GET("/")
+			lists.GET("/:id", h.PcData)
+			lists.POST("/off/:id", h.PcOff)
+			//		lists.PUT("/:id")
+			//		lists.DELETE("/:id")
+			//
+		}
+	}
 	return router
 }

@@ -6,6 +6,7 @@ import (
 )
 
 type PC struct {
+	ID          string `json:"id"`
 	PcName      string `json:"pc_name"`
 	PcIP        string `json:"pc_ip"`
 	PcStatus    string `json:"pc_status"`
