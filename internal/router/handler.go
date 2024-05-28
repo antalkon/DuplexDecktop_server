@@ -53,6 +53,7 @@ func InitRouters(h *handler.Handler) *gin.Engine {
 		lists := api.Group("/lists")
 		{
 			lists.POST("/", h.ListPc)
+			lists.POST("/class", h.ClassList)
 			//		lists.GET("/")
 			lists.GET("/:id", h.PcData)
 			lists.POST("/off/:id", h.PcOff)
