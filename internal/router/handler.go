@@ -58,9 +58,13 @@ func InitRouters(h *handler.Handler) *gin.Engine {
 			lists.POST("/off/:id", h.PcOff)
 			lists.POST("/class/:id", h.AddPcClass)
 			lists.DELETE("/class/:id", h.DelPcClass)
-			//		lists.PUT("/:id")
-			//		lists.DELETE("/:id")
-			//
+			//lists.PUT("/class/:id", h.DelPcClass)
+
+		}
+		class := api.Group("/class")
+		{
+			class.POST("/off/:id", h.ClassOff)
+			class.POST("/on/:id", h.ClassOn)
 		}
 	}
 	return router
